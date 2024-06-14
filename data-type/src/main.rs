@@ -1,4 +1,9 @@
 fn main() {
+    let test1 = 9;
+    let test2 = 30;
+    let test3 = test1 | test2;
+    println!("{test3}");
+
     let signed_8bit: i8 = -128; 
     let unsigned_8bit: u8 = 255;
 
