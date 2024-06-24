@@ -19,9 +19,33 @@ fn main() {
     let x = 5;
     let y = x; // x, y 의 값은 스택에 푸시가 된다.
 
-    /*
     let s1 = String::from("Hi~");
+    /*
     let s2 = s1; // 같은 포인터를 참조한다.
-    println!("{}", s1);
     */
+    let s2 = s1.clone(); // clone을 통해 깊은 복사를 하자
+    println!("{}", s1);
+
+    let s = String::from("Mymy~"); // s는 현재 main 스코프안에 유효하다.
+    give_me_ownership(s); // s는 함수로 이동된다.
+    // 이동된 s는 더 이상 유효하지 않다.
+
+    let myStr = return_str(); // 함수의 반환값이 myStr로 이동됨
+
+    let num = 100; // num는 main 스코프안에 유효하다.
+    it_is_copy(num); // num는 함수로 이동한다.
+    // num는 [Copy]로 num는 유효하다.
+} // num가 스코프를 벗아나며 유효하지 않게된다.
+
+fn give_me_ownership(str: String) { // str이 스코프로 들어옴
+    println!("{}", str);
+} // str이 스코프를 벗어남과 동시에 [drop]이 호출됨
+
+fn it_is_copy(num: isize) { // 변수 num이 스코프로 들어옴
+    println!("{}", num);
+} // 별일없음
+
+fn return_str() -> (String) {
+  let some_string = String::from("return Str"); // some_string이 스코프안으로 들어옴ㅁ
+  some_string // 호출자쪽으로 이동
 }
