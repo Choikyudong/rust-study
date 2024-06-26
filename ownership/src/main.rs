@@ -35,7 +35,11 @@ fn main() {
     let num = 100; // num는 main 스코프안에 유효하다.
     it_is_copy(num); // num는 함수로 이동한다.
     // num는 [Copy]로 num는 유효하다.
-} // num가 스코프를 벗아나며 유효하지 않게된다.
+
+    let param = String::from("Hi, Rust~");
+    let (res, len) = param_and_result_return(param); // String을 함수에 주고도 String을 다시 쓸 수 있다.
+    print!("파라미터는 : '{}'의 길이는 '{}'", res, len);
+} // num가 스코프를 벗어나며 유효하지 않게된다.
 
 fn give_me_ownership(str: String) { // str이 스코프로 들어옴
     println!("{}", str);
@@ -45,7 +49,12 @@ fn it_is_copy(num: isize) { // 변수 num이 스코프로 들어옴
     println!("{}", num);
 } // 별일없음
 
-fn return_str() -> (String) {
-  let some_string = String::from("return Str"); // some_string이 스코프안으로 들어옴ㅁ
-  some_string // 호출자쪽으로 이동
+fn return_str() -> String {
+    let some_string = String::from("return Str"); // some_string이 스코프안으로 들어옴
+    some_string // 호출자쪽으로 이동
+}
+
+fn param_and_result_return(s: String) -> (String, usize) {
+    let length = s.len();
+    (s, length)
 }
