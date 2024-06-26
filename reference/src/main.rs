@@ -29,6 +29,8 @@ fn main() {
     let r2 = &i;
     let r3 = &mut i; // 문제 발생
     // println!("{}, {}, and {}", r1, r2, r3);
+
+    // let dangling_pointer = dangle();
 }
 
 fn return_str_len(s: &String) -> usize { // s는 참조자
@@ -42,5 +44,14 @@ fn dosomething_to_reference(s: &String) {
 */
 
 fn dosomething_to_reference(s: &mut String) {
-  s.push_str("World");
+    s.push_str("World");
 }
+
+/*
+러스트는 해당 함수 자체가 존재하는한 컴파일을 막아버린다.
+fn dangle() -> &String {
+    let s = String::from("dangle~");
+    &s <-- 값의 소유권 이전이 아닌 참조자를 반환한다.
+} s는 스코프를 벗어나기 때문에 메모리에서 해제가 된다.
+메모리에서 사라진 s의 주소를 반환하게 된다;;
+*/
