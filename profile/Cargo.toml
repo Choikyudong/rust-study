@@ -1,0 +1,12 @@
+[package]
+name = "profile"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+
+[profile.dev]
+opt-level = 0 # 러스트가 코드에 적용할 최적화 수치이며 0 ~ 3 사이의 값을 가진다.
+
+[profile.release]
+opt-level = 3 # release의 opt-level 기본값은 3으로 설정되어 있다.
