@@ -1,0 +1,5 @@
+# Cargo 빌드 아티팩트 제외
+**/target/
+*.json
+*.exe
+*.pdb
